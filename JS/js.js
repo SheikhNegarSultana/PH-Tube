@@ -9,9 +9,26 @@ function categoryButton(){
         for( const category of categories){
             // console.log(category.category)
             const button = document.createElement('button')
-            button.innerHTML = `<button class="px-3 py-1.5 sm:px-4 sm:py-2 cursor-pointer rounded-full bg-[rgba(9,8,8,0.38)] text-gray-200 font-semibold text-xs sm:text-sm hover:bg-[rgba(255,255,255,0.12)] hover:text-black transition-colors duration-200">${category.category}</button>`
+            button.className = "px-3 py-1.5 sm:px-4 sm:py-2 cursor-pointer rounded-full bg-[rgba(9,8,8,0.38)] text-gray-200 font-semibold text-xs sm:text-sm hover:bg-[rgba(255,255,255,0.12)] hover:text-black transition-colors duration-200"
 
-            button.onclick = () => fetchVideosByCategory(category.category_id) 
+button.addEventListener("click", () => {
+    
+// remove 
+  document.querySelectorAll("#buttons button").forEach(btn => {
+    btn.classList.remove("active")
+  })
+
+  // Active 
+  button.classList.add("active")
+
+  
+  fetchVideosByCategory(category.category_id)
+
+})
+
+            button.innerHTML = `<button>${category.category}</button>`
+
+            
             buttons.appendChild(button)
         }
     }
@@ -27,6 +44,20 @@ function videoAPIFetchAndDesign(){
     fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
     .then(res => res.json())
     .then( data =>  videosFunction(data.videos))
+
+
+const allBtn = document.getElementById("allBtn")
+
+allBtn.addEventListener("click", () => {
+  
+  document.querySelectorAll("#buttons button, #allBtn").forEach(btn => {
+    btn.classList.remove("active")
+  })
+
+  allBtn.classList.add("active")
+})
+
+
 }
 videoAPIFetchAndDesign()
 
