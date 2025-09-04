@@ -11,7 +11,73 @@
     <link rel="stylesheet" href="./Styles/Style.css">
 
 </head>
-<body>
+
+<body class=" relative  ">
+
+<!-- Background Video -->
+<video 
+    id="bgVideo"
+    src="./Assets/BG.mp4" 
+    autoplay 
+    loop 
+    muted 
+    class="fixed inset-0 z-0 w-full h-full object-cover">
+  </video>
+
+
+<section class=" relative z-10 mt-[2rem] mx-[2rem] md:mx-[4rem] bg-white/30 backdrop-blur-md px-[1rem] md:px-[2rem] pt-[1rem] md:pt-[2rem] rounded-lg border border-[#cdcdcd]">
+
+<!-- NavBar Start -->
+<div class="navbar ">
+  <div class="navbar-start">
+    <a class="btn btn-ghost normal-case text-xl">
+      <img src="./Assets/Logo.png" alt="PH Tube Logo" class=" h-7 md:h-8" />
+    </a>
+  </div>
+
+<div class="navbar-end">
+  <!-- Mobile -->
+  <details class="relative flex md:hidden">
+    <summary class="ml-[1rem] avatar cursor-pointer list-none">
+      <div class="w-[2.5rem]">
+        <img class="border-black border-[0.1rem] rounded-full"
+          src="./Assets/pfp.jpg" alt="User Profile" />
+      </div>
+    </summary>
+
+    <!-- Mobile Search -->
+    <div
+      class="absolute right-0 mt-[0.5rem] p-[0.5rem] bg-white/90 backdrop-blur-md rounded-[0.5rem] shadow-md w-[12rem]">
+      <input type="text" placeholder="Search"
+        class="input input-bordered w-full" />
+    </div>
+  </details>
+
+  <!-- Desktop Search -->
+  <div class="form-control hidden md:block ml-[1rem]">
+    <input type="text" placeholder="Search"
+      class="input input-bordered w-[12rem] md:w-[16rem]" />
+  </div>
+
+  <!-- Desktop Avatar -->
+  <div class="avatar hidden md:block ml-[1rem]">
+    <div class="w-[2.5rem]">
+      <img class="border-black border-[0.1rem] rounded-full"
+        src="./Assets/pfp.jpg" alt="User Profile" />
+    </div>
+  </div>
+</div>
+
+
+</div>
+<!-- NavBar Done -->
+
+<hr class=" mt-[0.4rem] mx-[1rem] border-[0.01rem] mb-[4rem]">
+
+</section>
+    
+
+    <script src="./JS/bgVideo.js"></script>
     <script src="./JS/js.js"></script>
 </body>
 </html>
