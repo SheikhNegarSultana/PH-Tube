@@ -22,7 +22,8 @@ button.addEventListener("click", () => {
   button.classList.add("active")
 
   
-  fetchVideosByCategory(category.category_id)
+  fetchVideosByCategory(category.category_id),videosFunction(data.category || [])
+
 
 })
 
@@ -41,9 +42,15 @@ categoryButton()
 // Video API
 
 function videoAPIFetchAndDesign(){
-    fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+  fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
     .then(res => res.json())
-    .then( data =>  videosFunction(data.videos))
+    .then(data => {
+      videosFunction(data.videos)
+      
+      if (data.videos.length > 0) {
+        fetchByVideoId(data.videos[0].video_id)
+      }
+    })
 
 
 const allBtn = document.getElementById("allBtn")
@@ -117,9 +124,14 @@ function videosFunction(videos){
     </div>
 
     <!-- Meta Info -->
-    <p class="font-[Inter] text-[14px] leading-[20px] font-medium text-[#36A30E]">
+    <p class="font-[Inter] text-[14px] leading-[20px] font-bold text-[#36A30E]">
       ${video.others.views} views
     </p>
+
+<button onclick="videoDetails('${video.video_id}')" 
+  class="btn btn-xs text-white font-semibold border-black shadow-none sm:btn-sm md:btn-md bg-[#070707a9]">
+  Show Details
+</button>
   </div>`
 
             videoCards.appendChild(div)
@@ -134,3 +146,25 @@ function fetchVideosByCategory(id) {
       videosFunction(data.category) 
     })
 }
+
+function videoDetails(id) {
+  fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      const video = data.video
+      if (!video) return
+
+     
+      document.getElementById("modalTitle").innerText = video.title
+      document.getElementById("modalDescription").innerText = video.description || "No description available."
+      document.getElementById("modalThumbnail").src = video.thumbnail
+
+      
+      document.getElementById("videoModal").classList.remove("hidden")
+    })
+}
+
+function closeModal() {
+  document.getElementById("videoModal").classList.add("hidden")
+}
+

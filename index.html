@@ -98,6 +98,47 @@
 
 </div>
 
+<!-- Modal -->
+<div id="videoModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center z-50 hidden">
+  <div class="relative bg-white/95 dark:bg-gray-900/95 rounded-2xl shadow-2xl 
+              w-11/12 sm:w-10/12 md:w-3/4 lg:w-1/2 xl:w-2/5 
+              p-4 sm:p-6 md:p-8 mt-8
+              max-h-[90vh] overflow-y-auto animate-slide-down">
+
+    <!-- Close Button -->
+    <button onclick="closeModal()" 
+            class="absolute top-3 right-3 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white text-2xl font-bold">
+      &times;
+    </button>
+
+    <!-- Modal Content -->
+    <h2 id="modalTitle" class="text-lg sm:text-xl md:text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100">
+      Video Title
+    </h2>
+    <p id="modalDescription" class="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+      Video description will go here.
+    </p>
+    <img id="modalThumbnail" 
+         class="rounded-xl w-full object-cover shadow-md border border-gray-200 dark:border-gray-700" 
+         alt="Video Thumbnail">
+  </div>
+</div>
+
+<!-- Tailwind Animations -->
+<style>
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-down {
+  animation: slideDown 0.3s ease-out;
+}
+</style>
+
+
+
+
+
 
 
 </section>
